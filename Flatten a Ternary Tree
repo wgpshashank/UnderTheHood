@@ -214,3 +214,8 @@ class Main
 		System.out.println(flatten.flattenInOrder(root));
 	}
 }
+/*********************************/
+Time Complexity O(3^n)
+Space Complexity O(n) , where n is number of nodes in tree.
+Run Here http://ideone.com/trzycV
+/*********************************/
