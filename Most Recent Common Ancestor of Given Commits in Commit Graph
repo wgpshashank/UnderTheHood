@@ -1,0 +1,70 @@
+import java.util.*;
+
+interface FindCommonAncestor
+{
+    String findCommmonAncestor(String[] commitHashes, String[][] parentHashes, String commitHash1, String commitHash2);
+}
+
+class MyFindCommonAncestor implements FindCommonAncestor
+{
+    public String findCommmonAncestor(String[] commitHashes,
+            String[][] parentHashes, String commitHash1, String commitHash2)
+    {
+    	// Some Important checks to make sure program return result with any error/exception
+    	if(commitHashes==null || commitHashes.length==0 ||
+    		parentHashes==null || parentHashes.length==0 || 
+    		commitHash1==null || commitHash1.length()==0 ||
+    		commitHash2==null || commitHash2.length()==0)
+    		return null;
+    	
+    	//Find the position of individual CommitHashes
+        int commit1Position = findCurrentCommitPosition(commitHashes, commitHash1);
+        int commit2Position = findCurrentCommitPosition(commitHashes, commitHash2);
+        
+        //Find Corresponding Parent
+        String ancestor1 = getParentForThisCommitByIndex(parentHashes, commit1Position);
+        String ancestor2 = getParentForThisCommitByIndex(parentHashes, commit2Position);
+        
+        while (!ancestor1.equals(ancestor2))
+        {
+            commit1Position++;
+            commit2Position++;
+            ancestor1 = getParentForThisCommitByIndex(parentHashes, commit1Position);
+            ancestor2 = getParentForThisCommitByIndex(parentHashes, commit2Position);
+        }    
+        
+        //If two ancester are equals then return either of them
+        return ancestor1;
+     }
+    
+    public String getParentForThisCommitByIndex(String[][] parentHashes, int index){
+        return parentHashes[index][0] + "";
+    }
+    
+    public int findCurrentCommitPosition(String[] commitHashes, String commit) {
+        int i=0;
+        for(; i < commitHashes.length ; i++) {
+          	if (commitHashes[i].equals(commit))
+            {
+                break;
+            }
+        }
+        return i;    
+    }
+
+	public static void main(String a[])
+	{
+		String[] commits = {"G", "F", "E", "D", "C", "B", "A"};
+		String[][] parents ={{"F","D"},{"E"}, {"B"}, {"C"}, {"B"}, {"A"}, null}; 
+		String commit1 = "D";
+		String commit2 = "F";
+		MyFindCommonAncestor obj=new MyFindCommonAncestor();
+		System.out.println(obj.findCommmonAncestor(commits,parents,commit1,commit2));
+		
+	}
+}
+
+/********************************************************
+Time Complexity :  O(n)
+Space Complexity : Auxallery Space O(1)= O(1)
+*********************************************************/
