@@ -1,3 +1,42 @@
+/*
+Atlassian's Bitbucket service provides free git and mercurial source code repository hosting. One way to represent the history of a source code repository 
+like git is as a graph of commits. Some examples:A simple linear commit graph. This is the graph of a repository with no branching or merging
+A-B-C-D
+The graph of the history of a repository with a single branch. The repository was branched at Commit B. Commits E and F were made against this branch
+    E-F
+   /
+A-B-C-D
+The graph of the history of a repository with a single branch which is then later merged back into master. The repository was branched at Commit B. 
+Commits E and F were made against this branch. Commit G resulted from merging commits F and D
+    E-F
+   /   \
+A-B-C-D-G
+Implement a function that will find the most recent common ancestor of any two commits from a given commit graph. The commit graph is represented as a 
+String[] called commits containing all commit IDs in sorted date order (most recent first) and a String[][] called parents. The parent IDs for the commit 
+ID at index i can be found at parents[i]. The last item in the parents array is always null since this represents the parent of the root commit. For 
+example, the following commit graph:
+    E-F
+   /   \
+A-B-C-D-G
+
+will be represented using:
+String[] commits = {"G", "F", "E", "D", "C", "B", "A"};
+String[][] parents ={{"F","D"},{"E"}, {"B"}, {"C"}, {"B"}, {"A"}, null}; 
+If one commit is an ancestor of the other, return the commit that is the ancestor
+Your implementation must implement the FindCommonAncestor interface.
+Sample input:
+String[] commits = {"G", "F", "E", "D", "C", "B", "A"};
+String[][] parents ={{"F","D"},{"E"}, {"B"}, {"C"}, {"B"}, {"A"}, null}; 
+String commit1 = "D";
+String commit2 = "F";
+This is asking for the most recent common ancestor of commits D and F in the following commit graph
+    E-F
+   /   \
+A-B-C-D-G
+The answer is B
+
+*/
+
 import java.util.*;
 
 interface FindCommonAncestor
