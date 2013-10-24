@@ -49,7 +49,7 @@ class MyFindCommonAncestor implements FindCommonAncestor
     public String findCommmonAncestor(String[] commitHashes,
             String[][] parentHashes, String commitHash1, String commitHash2)
     {
-    	// Some Important checks to make sure program return result with any error/exception
+    	// Some Important checks to make sure program return result without any error/exception
     	if(commitHashes==null || commitHashes.length==0 ||
     		parentHashes==null || parentHashes.length==0 || 
     		commitHash1==null || commitHash1.length()==0 ||
