@@ -41,3 +41,7 @@ class Ideone
                       factorialNo + " is: " + sum);
 	}
 }
+
+Run Here http://ideone.com/ylbNQE
+Time Complexity O(n!)
+Space Complexity O(1)
