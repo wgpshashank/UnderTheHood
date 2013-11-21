@@ -1,5 +1,5 @@
-A deadlock is a situation where minimum two threads are holding lock on some different resource, and both are waiting for
-other’s resource to complete its task. And, none is able to leave the lock on resource it is holding. 
+A deadlock is a situation where minimum two threads are holding lock on some different resource, and both are waiting 
+for other’s resource to complete its task. And, none is able to leave the lock on resource it is holding. 
 
 package ProducerConsumerProblem;
 
@@ -34,7 +34,53 @@ class SyncThread implements Runnable{
         this.obj2=o2;
     }
     @Override
-    public void run() {
+     public void run() {
+        String name = Thread.currentThread().getName();
+        System.out.println(name + " acquiring lock on "+obj1);
+        synchronized (obj1) {
+         System.out.println(name + " acquired lock on "+obj1);
+         work();
+         System.out.println(name + " acquiring lock on "+obj2);
+         synchronized (obj2) {
+            System.out.println(name + " acquired lock on "+obj2);
+            work();
+        }
+         System.out.println(name + " released lock on "+obj2);
+        }
+        System.out.println(name + " released lock on "+obj1);
+        System.out.println(name + " finished execution.");
+    } 
+    private void work() {
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In above program SyncThread is implementing Runnable interface and it works on two Objects by acquiring lock on each 
+one of them one by one using synchronized block.In main method, I have three threads running for SyncThread and there
+is a shared resource between each of the threads. The threads are run in such a way that it will be able to acquire 
+lock on the first object but when it’s trying to acquire lock on second object, it goes on wait state because it’s 
+already locked by another thread. This forms a cyclic dependency for resource between Threads causing deadlock.When I 
+execute the above program, here is the output generated but program never terminates because of deadlock.
+
+
+t1 acquiring lock on java.lang.Object@6d9dd520
+t1 acquired lock on java.lang.Object@6d9dd520
+t2 acquiring lock on java.lang.Object@22aed3a5
+t2 acquired lock on java.lang.Object@22aed3a5
+t3 acquiring lock on java.lang.Object@218c2661
+t3 acquired lock on java.lang.Object@218c2661
+t1 acquiring lock on java.lang.Object@22aed3a5
+t2 acquiring lock on java.lang.Object@218c2661
+t3 acquiring lock on java.lang.Object@6d9dd520
+
+Deadlock occusr because of nested locks , thread trying acquires a lock on object which was already used , we can Avoid 
+the deadlock above if we change  the implementation of run() method without nested lock.
+
+public void run() {
         String name = Thread.currentThread().getName();
         System.out.println(name + " acquiring lock on " + obj1);
         synchronized (obj1) {
@@ -51,28 +97,7 @@ class SyncThread implements Runnable{
      
         System.out.println(name + " finished execution.");
     }
-    //UnCommenting will Cause Deadloack
-    /*public void run() {
-        String name = Thread.currentThread().getName();
-        System.out.println(name + " acquiring lock on "+obj1);
-        synchronized (obj1) {
-         System.out.println(name + " acquired lock on "+obj1);
-         work();
-         System.out.println(name + " acquiring lock on "+obj2);
-         synchronized (obj2) {
-            System.out.println(name + " acquired lock on "+obj2);
-            work();
-        }
-         System.out.println(name + " released lock on "+obj2);
-        }
-        System.out.println(name + " released lock on "+obj1);
-        System.out.println(name + " finished execution.");
-    } */
-    private void work() {
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}
+    
+    
+Run Here http://ideone.com/f1sEkj You will get TLE here because of ideone has specific time limit , run it on your own 
+system ,it will work without deadlock
