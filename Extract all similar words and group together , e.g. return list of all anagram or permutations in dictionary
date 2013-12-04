@@ -56,5 +56,6 @@ public class Anagram {
 
 Time Complexity  O(n*d) where n is no. of words in file and d is length of word in file f(d)= for i 0= n max {f[di}..f(dn)}
 Space Complexity will be O(n)
+Ref. docs.oracle.com/javase/tutorial/collections/interfaces/map.html
 
 There is another solution i'm aware of using trie , will post that later , if have anything to share feel free let me know.
