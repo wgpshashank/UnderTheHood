@@ -1,0 +1,58 @@
+Java doesn't provide the direct data structure as multimap , we can construct the multimap using hashmap and linked list , which works efficiently on large text input file.A multimap is like a Map 
+but it can map each key to multiple values. The Java Collections Framework doesn't include an interface for multimaps 
+because they aren't used all that commonly.  It's a fairly simple matter to use a Map whose values are List instances 
+as a multimap. This technique is demonstrated in the next code example, which reads a word list containing one word per 
+ine (all lowercase) and prints out all the anagram groups that meet a size criterion. An anagram group is a bunch of 
+words, all of which contain exactly the same letters but in a different order. It will print all anagram list of different
+group size.
+
+There is a standard trick for finding anagram groups: For each word in the dictionary, alphabetize the letters in the word 
+(that is, reorder the word's letters into alphabetical order) and put an entry into a multimap, mapping the alphabetized 
+word to the original word. For example, the word bad causes an entry mapping abd into bad to be put into the multimap. 
+A moment's reflection will show that all the words to which any given key maps form an anagram group. It's a simple matter 
+to iterate over the keys in the multimap, printing out each anagram group that meets the size constraint.
+
+
+import java.util.*;
+import java.io.*;
+
+public class Anagram {
+    public static void main(String[] args) {
+    	
+        int minGroupSize = 2;//Integer.parseInt(args[0]);
+
+        // Read words from file and put into a simulated multimap
+        Map<String, List<String>> m = new HashMap<String, List<String>>();
+
+        try {
+            Scanner s = new Scanner(new File("C:/Users/wgpshashank/workspace/Test/src/AnagramTest/Anagram.txt"));
+            while (s.hasNext()) {
+                String word = s.next();
+                String alpha = alphabetize(word);
+                List<String> l = m.get(alpha);
+                if (l == null)
+                    m.put(alpha, l=new ArrayList<String>());
+                l.add(word);
+            }
+        } catch (IOException e) {
+            System.err.println(e);
+            System.exit(1);
+        }
+
+        // Print all permutation groups above size threshold
+        for (List<String> l : m.values())
+            //if (l.size() >= minGroupSize)
+                System.out.println(l.size() + ": " + l);
+    }
+
+    private static String alphabetize(String s) {
+        char[] a = s.toCharArray();
+        Arrays.sort(a);
+        return new String(a);
+    }
+}
+
+
+Time Complexity  O(n*d) where n is no. of words in file and d is length of word in file f(d)= for i 0= n max {f[di}..f(dn)}
+Space Complexity will be O(n)
+Ref. docs.oracle.com/javase/tutorial/collections/interfaces/map.html
