@@ -1,3 +1,19 @@
+Algorithm:
+
+Best first search algorithm (A*)
+* declare priorityQueue
+* add root node to our priorityQueue
+* while priorityQueue not empty do following loops:
+* a. retrieve then remove first node of our openlist
+* b. check status of retrieved node
+*      if it is the goal node then break loop and print solution
+*      if it is not goal node then:
+*      – expand retrieved node
+*      – evaluaate using mismatch heuristik
+*      – add to priorityQueue
+*      – continue loop
+
+
 // Breadth First Search Usage in the common Eight Puzzle Problem.
 import java.util.*;
 
