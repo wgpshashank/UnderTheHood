@@ -1,7 +1,7 @@
 A twin prime is a prime number that differs from another prime number by two. Except for the pair (2, 3), 
 this is the smallest possible difference between two primes. Some examples of twin prime pairs are (3, 5), (5, 7), 
 (11, 13), (17, 19), (29, 31) and (41, 43). Sometimes the term twin prime is used for a pair of twin primes; an 
-alternative name for this is prime twin.
+alternative name for this is prime twin.// http://ideone.com/09QPNz
 
 
 public class TwinPrime {
@@ -38,4 +38,4 @@ public class TwinPrime {
 
 }
 
-Run Here http://ideone.com/09QPNz
+Run Here http://ideone.com/TeJKSv
