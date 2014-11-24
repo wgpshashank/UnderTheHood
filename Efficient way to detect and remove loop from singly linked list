@@ -147,5 +147,5 @@ int main()
 
 Time Complexity O(n) 
 Check Loop in linked list http://ideone.com/sPd25R
-Remove loop from linked list http://ideone.com/J27wmC
+Remove loop from linked list http://ideone.com/J27wmC , Another efficient solution http://ideone.com/yhNvbE
 Feel free to let me know if we can better or you have soemthing in mind to share 
