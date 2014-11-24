@@ -17,7 +17,7 @@ to iterate over the keys in the multimap, printing out each anagram group that m
 import java.util.*;
 import java.io.*;
 
-public class Anagram {
+public class GroupAnagram {
     public static void main(String[] args) {
     	
         int minGroupSize = 2;//Integer.parseInt(args[0]);

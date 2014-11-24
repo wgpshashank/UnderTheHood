@@ -199,7 +199,7 @@ class MyFlattenTree<T> implements FlattenTree<T> {
 	}
 }
 
-class Main
+class FlattenTernaryTree
 {
 	public static void main (String[] args) throws java.lang.Exception
 	{

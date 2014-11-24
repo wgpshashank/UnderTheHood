@@ -207,7 +207,7 @@ class MyCache {
 	
 }
 
-class Main
+class LRUCache
 {
 	
 	public static void main(String a[])
