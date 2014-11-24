@@ -166,7 +166,7 @@ class Minesweeper {
    
    
 }
-class Main
+class MinesweeperGame
 {
 	
 	
