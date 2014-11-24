@@ -257,7 +257,7 @@ class DoublyLinkedList {
   }
 }
 
-class Main
+class MRUCache
 {
 	
 	public static void main (String[] args)
