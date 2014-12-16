@@ -236,14 +236,14 @@ class LRUCache
 
 }
 
-If you have come this far then you might have liked what you've read , so lets discuss about improvemnt.
+If you have come this far then you might have liked what you've read , so lets discuss about improvemnts.
 
-1. I'm using ConcurrentHashMap whic doesn't allow null Key or Value so right now i'm using map.remove method ,which i'm sure not
+1. I'm using ConcurrentHashMap which doesn't allow null Key or Value so right now i'm using map.remove method ,which i'm sure not
 O(1) how we can make it O(1) , let me know ?  One solution we can use hashMap instead on the cost synchronization #line129 
 
 Note: All operation except this are O(1) in both Data Structure considering good hash fucntion in case of ConcurrentHashMap
 
-2.Object Oriented Desiging improvements if you've.
+2.Object Oriented Designing improvements if you've.
 
 3.What's the best possible size one should provide in real time situation considering re-sizing is very expensive process 
 #line217
